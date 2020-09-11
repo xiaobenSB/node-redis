@@ -179,7 +179,7 @@ class NodeRedis{
     setNX(key, value, expireTime) {   //   可以用来做请求同步限制
 		var that = this;
        /* return new Promise((resolve,reject) =>{
-            that.client.set(key, value, 'NX', 'PX', expireTime, (err, reply) => {
+            that.client.set(key, value, 'EX', expireTime, 'NX', (err, reply) => {
                 if (err) {
                     reject(err);
                     return;
@@ -193,7 +193,7 @@ class NodeRedis{
                 resolve(reply)
             })
         })*/
-		that.client.set(key, value, 'NX', 'PX', expireTime, (err, reply) => {
+		that.client.set(key, value, 'EX', expireTime,'NX', (err, reply) => {
 			if (err) {
 				console.log('插入时发生了错误');
 				console.log(err);
